@@ -76,7 +76,7 @@
           "sender": "agent@mail.com",
           "attachment": {
             "content_type": "application/pdf",
-            "source": "https://picsum.photos/id/0/5000/3333"
+            "source": "https://raw.githubusercontent.com/alfiankan/qiscus/refs/heads/master/media/hindia/ComputationalRecruiting.pdf"
           }
         },
         {
