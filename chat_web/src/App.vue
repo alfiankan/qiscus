@@ -21,7 +21,7 @@ function justScroll() {
 </script>
 
 <template>
-  <div class="flex flex-col fixed w-full">
+  <div class="flex flex-col w-full">
     <div class="flex flex-row bg-white w-full">
       <!-- <div class="border border-gray-200 w-4/12">
         <div class="pt-3 pl-3 mb-4 pr-2">
