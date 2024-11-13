@@ -85,8 +85,8 @@
           "message": "Berikut Invoicenya",
           "sender": "agent@mail.com",
           "attachment": {
-            "content_type": "video/mp4",
-            "source": "https://picsum.photos/id/0/5000/3333"
+            "content_type": "application/x-mpegURL",
+            "source": "https://raw.githubusercontent.com/alfiankan/qiscus/refs/heads/master/media/hindia/konser.m3u8"
           }
         }
       ]
