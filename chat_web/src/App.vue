@@ -1,11 +1,29 @@
 <script setup lang="ts">
 import ChatScrollPane from './components/ChatScrollPane.vue'
+import { onMounted, ref, nextTick, useTemplateRef } from 'vue'
+
+const chatScrollPane = useTemplateRef('chatScrollPane')
+const newChatMessage = ref();
+
+function sendMessage() {
+
+  chatScrollPane.value?.scrollBottom()
+
+  chatScrollPane.value?.sendMessageToRoom(newChatMessage.value, {})
+  newChatMessage.value = ""
+}
+
+function justScroll() {
+  chatScrollPane.value?.scrollBottom()
+
+}
+
 </script>
 
 <template>
   <div class="flex flex-col fixed w-full">
     <div class="flex flex-row bg-white w-full">
-      <div class="border border-gray-200 w-4/12">
+      <!-- <div class="border border-gray-200 w-4/12">
         <div class="pt-3 pl-3 mb-4 pr-2">
           <h3 class="text-xs font-semibold text-gray-400 mb-1">Qiscus Omni</h3>
           <div class="overflow-y-auto h-screen">
@@ -29,7 +47,7 @@ import ChatScrollPane from './components/ChatScrollPane.vue'
             <hr />
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="w-full flex flex-col h-screen">
         <div class="flex items-center justify-between p-4 border-b">
           <div class="flex items-center space-x-3">
@@ -46,10 +64,13 @@ import ChatScrollPane from './components/ChatScrollPane.vue'
             </div>
           </div>
         </div>
-        <ChatScrollPane />
+        <ChatScrollPane ref="chatScrollPane" />
+        
         <div class="p-4 border-t">
           <div class="flex items-center space-x-3">
             <input
+            v-on:keyup.enter="sendMessage"
+            v-model="newChatMessage"
               type="text"
               placeholder="Send a message..."
               class="text-gray-600 flex-1 p-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
@@ -72,7 +93,7 @@ import ChatScrollPane from './components/ChatScrollPane.vue'
               </svg>
             </button>
 
-            <button class="p-2 bg-teal-600 hover:bg-blue-600 rounded-full text-white rotate-90">
+            <button v-on:click="sendMessage" class="p-2 bg-teal-600 hover:bg-blue-600 rounded-full text-white rotate-90">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   stroke-linecap="round"
