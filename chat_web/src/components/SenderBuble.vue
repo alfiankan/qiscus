@@ -12,7 +12,6 @@ defineProps<{
 
 <template>
   <div class="flex flex-row-reverse items-start space-x-reverse space-x-3">
-    <img src="https://picsum.photos/id/237/200/300" alt="Me" class="w-8 h-8 rounded-full" />
     <div class="flex flex-col items-end">
       <div class="bg-teal-500 text-white p-3 rounded-lg max-w-xs lg:max-w-md break-words">
         <div v-if="attachment?.source" class="rounded-md w-64 lg:w-96">

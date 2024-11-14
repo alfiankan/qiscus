@@ -13,7 +13,6 @@ defineProps<{
 
 <template>
   <div class="flex items-start space-x-3">
-    <img src="https://picsum.photos/id/237/200/300" alt="David" class="w-8 h-8 rounded-full mt-8" />
     <div>
       <span class="text-xs text-gray-500 mt-1">{{ email }}</span>
 
