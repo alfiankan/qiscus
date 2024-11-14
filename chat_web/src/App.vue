@@ -6,12 +6,10 @@ import { ChatsRepository } from './repositories/chats'
 import type { Chats, ChatsResponseDTO } from './dto/chat.type'
 
 const chatScrollPane = useTemplateRef('chatScrollPane')
-
+const blockChatListPage = ref(false)
 const chats = ref<Chats[] | null>(null)
 const senderEmail = 'customer@mail.com'
 const chatRoom = ref<Chats | null>(null)
-
-const blockChatListPage = ref(false)
 
 function loadChatInRoom(chat: Chats) {
   chatRoom.value = chat
@@ -29,7 +27,6 @@ onMounted(() => {
     .getChats()
     .then((chatsResponse) => {
       chats.value = chatsResponse.results
-      // choose
       chatRoom.value = chatsResponse.results[0]
     })
     .catch((err) => alert(err))
@@ -65,7 +62,7 @@ onMounted(() => {
           </div>
         </div>
       </div>
-      <div :class="[!blockChatListPage ? 'w-full' : 'w-0',, 'flex', 'flex-col', 'h-screen']">
+      <div :class="[!blockChatListPage ? 'w-full' : 'w-0', , 'flex', 'flex-col', 'h-screen']">
         <ChatScrollPane
           @blockChatListParent="openChatListHistory"
           ref="chatScrollPane"

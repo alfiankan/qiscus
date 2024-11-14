@@ -3,20 +3,19 @@ import RecvBuble from './RecvBuble.vue'
 import SenderBuble from './SenderBuble.vue'
 import { onMounted, ref, nextTick, useTemplateRef, watch, onUpdated, watchEffect } from 'vue'
 import type { Attachment, Comment, Room, Chats } from '@/dto/chat.type'
-import BackButtonIcon from './BackButtonIcon.vue'
+import BackButtonIcon from './media_parser/BackButtonIcon.vue'
 
 const bottomRoom = useTemplateRef('bottomRoom')
 const newChatMessage = ref()
 const newAttachment = ref<File | null>()
+const chats = ref<Comment[] | null>()
+const fileInput = ref<HTMLInputElement | null>(null)
 
 const props = defineProps<{
   chatRoom?: Chats
   senderEmail?: string
 }>()
 
-const chats = ref<Comment[] | null>()
-
-const fileInput = ref<HTMLInputElement | null>(null)
 const triggerFileInput = () => {
   fileInput.value?.click()
 }
@@ -30,12 +29,23 @@ function scrollBottom() {
   console.log('scrolling')
 }
 
+function formatDate(date: Date) {
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0') // Months are zero-indexed
+  const day = String(date.getDate()).padStart(2, '0')
+  const hours = String(date.getHours()).padStart(2, '0')
+  const minutes = String(date.getMinutes()).padStart(2, '0')
+  const seconds = String(date.getSeconds()).padStart(2, '0')
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
+}
+
 function sendMessageToRoom() {
   const chat = {
     message: newChatMessage.value,
     attachment: {},
     sender: props.senderEmail,
     type: 'text',
+    time: formatDate(new Date()),
   } as Comment
 
   if (newAttachment.value) {
