@@ -161,7 +161,7 @@ onUpdated(() => {
         accept=".jpg, .jpeg, .png, .pdf"
       />
 
-      <button @click="triggerFileInput" class="p-2 hover:bg-gray-100 rounded-full">
+      <button @click="triggerFileInput" :class="[newAttachment ? 'bg-teal-100' : null, 'p-2', 'hover:bg-gray-100', 'rounded-full']">
         <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18.18 8.95l-8.57 8.57a2 2 0 1 1-2.83-2.83l8.57-8.57"
