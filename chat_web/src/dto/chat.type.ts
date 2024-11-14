@@ -22,13 +22,14 @@ export interface Comment {
   message: string
   sender: string
   attachment: Attachment
+  time: string
 }
 
-export interface Result {
+export interface Chats {
   room: Room
   comments: Comment[]
 }
 
 export interface ChatsResponseDTO {
-  results: Result[]
+  results: Chats[]
 }
